@@ -1,0 +1,230 @@
+html,body{
+	margin:0%;
+	padding:0%;
+	height:100%;
+}
+#wrapper{
+	min-height: 100%;
+	width:100%;
+	position:relative;	
+	display:block;
+}
+#mainHeader{
+	display:flex;
+	flex-direction:column;
+	width:100%;	
+	margin:0%;
+	padding:0%;
+	/*border:1px solid black;*/
+	align-items:center;	
+}
+#mainHeader > #subHeader{
+	display:flex;
+	flex-direction:column;
+	width:60%;
+	margin:0%;
+	padding:0%;	
+	/*border:1px solid red;*/
+	align-items:center;
+}
+#mainHeader > #subHeader > #subHeaderImg{
+	width:70%;
+	height:60px;
+	margin:10px 0%;
+}
+#mainNav{
+	display:flex;
+	flex-direction:column;
+	width:100%;	
+	margin:0%;
+	padding:0%;
+	/*border:1px solid blue;*/
+	align-items:center;
+	background-color: rgb(33,33,138);	
+}
+#mainNav > #subNav{
+	display:flex;
+	flex-direction:column;
+	width:60%;
+	margin:0%;
+	padding:0%;	
+	/*border:1px solid green;*/
+	align-items:center;
+	background-color: rgb(33,33,138);
+}
+#mainNav > #subNav > #subNavMenu{
+	display:flex;
+	flex-direction:row;
+	width:80%;
+	margin:0%;
+	padding:0%;	
+	/*border:1px solid green;*/
+	list-style:none;
+	background-color: rgb(33,33,138);
+}
+#mainNav > #subNav > #subNavMenu > li{
+	display:flex;
+	flex-direction:row;	
+	margin:0%;
+	padding:0px 2%;	
+	border-left:2px solid black;
+	border-right:2px solid black;
+	background-color: rgb(33,33,138);
+}
+#mainNav > #subNav > #subNavMenu > li > a{
+	text-decoration:none;
+	display:flex;
+	flex-direction:row;	
+	width:100%;
+	/*height:40px;*/
+	margin:0%;
+	padding:10px 2%;	
+	font-size:large;
+	color:rgb(255,255,255);
+	align-items:center;
+	justify-content:center;
+}
+#mainContent{
+	display:flex;
+	flex-direction:column;
+	width:100%;	
+	margin:0%;
+	padding:0%;
+	padding-bottom: 185px;
+	/*border:1px solid black;*/
+	align-items:center;
+}
+#mainContent > #subContent{
+	display:flex;
+	flex-direction:column;
+	width:60%;
+	margin:0%;
+	padding:0%;	
+	/*border:1px solid green;*/
+}
+#mainContent > #subContent > #processSection{
+	display:flex;
+	flex-direction:column;
+	width:100%;
+	margin:0%;
+	padding:0%;	
+	/*border:1px solid red;*/
+}
+#mainContent > #subContent > #processSection > #inputFileArticle,
+#mainContent > #subContent > #processSection > #processArticle{
+	display:flex;
+	flex-direction:row;
+	width:100%;
+	margin:20px 1% 0px 1%;
+	padding:1%;	
+	border:1px solid black;	
+	box-shadow:5px 5px 3px rgb(0,0,0);
+}
+#mainContent > #subContent > #processSection > #inputFileArticle > #inputDiv,
+#mainContent > #subContent > #processSection > #processArticle > #processDivCont
+{
+	display:flex;
+	flex-direction:column;
+	width:100%;
+	margin:0%;
+	padding:0%;	
+	/*border:1px solid black;*/
+}
+#mainContent > #subContent > #processSection > #inputFileArticle > #inputDiv > p{
+	width:100%	
+}
+#mainContent > #subContent > #processSection > #inputFileArticle > #inputDiv > p > span{
+	/*width:30%;*/
+	text-align:right;
+	font-weight:bold;
+	display:inline-block;
+}
+#mainContent > #subContent > #processSection > #inputFileArticle > #inputDiv > p > #processButton{
+	border-radius:7px;
+	width:15%;
+	background-color: rgb(33,33,138);
+	color:rgb(255,255,255);
+}
+#mainContent > #subContent > #processSection > #processArticle > #processDivCont > h3{
+	text-align:center;
+}
+#mainContent > #subContent > #processSection > #processArticle > #processDivCont > #procesResultTable{
+	display:flex;
+	flex-direction:column;
+	width:100%;
+	margin:0%;
+	padding:0%;	
+	border:1px solid black;	
+}
+#mainContent > #subContent > #processSection > #processArticle > #processDivCont > #procesResultTable > thead,
+#mainContent > #subContent > #processSection > #processArticle > #processDivCont > #procesResultTable > tbody{
+	display:flex;
+	flex-direction:column;
+	/*width:100%;*/
+	margin:0%;
+	padding:0%;	
+	/*border:1px solid black;*/
+	
+} 
+#mainContent > #subContent > #processSection > #processArticle > #processDivCont > #procesResultTable > thead > tr,
+#mainContent > #subContent > #processSection > #processArticle > #processDivCont > #procesResultTable > tbody > tr{
+	display:flex;
+	flex-direction:row;
+	/*width:100%;*/
+	margin:0%;
+	padding:0%;	
+	/*border:1px solid black;*/
+	
+}
+#mainContent > #subContent > #processSection > #processArticle > #processDivCont > #procesResultTable > thead > tr > td,
+#mainContent > #subContent > #processSection > #processArticle > #processDivCont > #procesResultTable > tbody > tr > td{
+	display:flex;
+	flex:1;
+	flex-direction:column;
+	margin:0%;
+	padding:0px 1%;	
+	border:1px solid black;
+	align-items:center;
+	
+}
+#mainContent > #subContent > #processSection > #processArticle > #processDivCont > #procesResultTable > thead > tr > td{
+	font-weight:bold;
+}
+#mainFooter{
+	display:flex;
+	flex-direction:column;
+	position:absolute;	
+	width:100%;
+	height:180px;	
+	bottom: 0px;
+	left:0px;
+	margin:0%;
+	padding:0%;	
+	/*border:1px solid green;*/
+	align-items:center;
+	justify-content:center;
+	background-color: rgb(0,0,0);	
+}
+#mainFooter > #subFooter{
+	display:flex;
+	flex-direction:column;
+	width:60%;
+	margin:0%;
+	padding:0%;	
+	/*border:1px solid green;*/
+	align-items:center;
+}
+#mainFooter > #subFooter > #footerDataCont{
+	display:flex;
+	flex-direction:column;
+	width:50%;
+	margin:0%;
+	padding:0%;	
+	align-items:center;
+}
+#mainFooter > #subFooter > #footerDataCont > a{
+	display:flex;
+	flex-direction:column;
+	color:rgb(255,255,255);
+	font-size:large;
+}

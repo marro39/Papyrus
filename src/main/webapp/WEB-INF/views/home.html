@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>	
+		<title>Papyrus test</title>
+		<meta charset="UTF-8" />
+		<link type="text/css" rel="stylesheet" href="resources/css/mainContent.css"/>
+		<script type="text/javascript" src="resources/js/jquery-1.11.1.js"></script>
+	</head>
+	<body>
+		<div id="wrapper">
+			<header id="mainHeader">
+				<div id="subHeader">
+					<img id="subHeaderImg" src="resources/img/papyrus.jpg" alt="papyrus img"/>
+				</div>
+			</header>
+			<nav id="mainNav">
+				<div id="subNav">
+					<ul id="subNavMenu">
+						<li><a href="/test/">Home</a></li>
+					</ul>
+				</div>
+			</nav>
+			<div id="mainContent">
+				<div id="subContent">
+					<section id="processSection">
+						<article id="inputFileArticle">
+							<div id="inputDiv">
+								<p>
+									<span>File location:&nbsp;</span>
+									<input type="text" id="inputTextFile" value="C:\Users\Marcus\eclipseDevEE\marcusDev\data_calculation.csv"/>
+									<input type="button" id="processButton" value="Process file" />									
+								</p>								
+							</div>							
+						</article>
+						<article id="processArticle">
+							<div id="processDivCont">
+								<h3>Results</h3>
+								<table id="procesResultTable">
+									<thead>
+										<tr>
+											<td>Process step</td>
+											<td>Measure</td>
+											<td>Errors</td>
+											<td>Average value</td>
+											<td>Total amount</td>											
+										</tr>
+									</thead>
+									<tbody id="tBodyProcess">																				
+									</tbody>
+								</table>
+							</div>							
+						</article>
+					</section>
+				</div>
+			</div>
+			<footer id="mainFooter">
+				<div id="subFooter">
+					<div id="footerDataCont">						
+						<a>Marcus Ronnang</a>
+						<a>marcusronnang@hotmail.com</a>
+						<a>This site is for training purposes only!</a>
+					</div>
+				</div>
+			</footer>			
+			<script type="text/javascript" src="resources/js/jquery-1.11.1.js"></script>
+			<script type="text/javascript">
+				//<![CDATA[	
+			    	$(document).ready(function(){
+			    		$("#processButton").on("click",function(){			    			
+			    			var fileLocation=$("#inputTextFile").val();
+			    			alert(fileLocation);
+			    			$.ajax({
+			    				type: 'POST',		
+			    				url: '/test/process',
+			    				data: {'fileLocation':fileLocation},
+			    				dataType: 'json',		
+			    				success: function(data){			    					
+			    					//alert(data);
+			    					var objCollProcessData=data;
+			    					var i;
+			    					for(i in objCollProcessData){
+			    						//alert(objCollProcessData[i].average);
+			    						var tBodyProcess=document.getElementById("tBodyProcess");
+			    						var tableRow=document.createElement("tr");
+			    						tBodyProcess.appendChild(tableRow);
+			    						
+			    						var tData=document.createElement("td");
+			    						tData.innerHTML=objCollProcessData[i].processCont[0].processStep;			    						
+			    						tableRow.appendChild(tData);			    						
+			    						
+			    						var tData=document.createElement("td");
+			    						tData.innerHTML=objCollProcessData[i].processCont[0].meausure;
+			    						tableRow.appendChild(tData);			    						
+			    						
+			    						var tData=document.createElement("td");
+			    						tData.innerHTML=objCollProcessData[i].errors;
+			    						tableRow.appendChild(tData);
+			    						
+			    						var tData=document.createElement("td");
+			    						tData.innerHTML=objCollProcessData[i].average;
+			    						tableRow.appendChild(tData);
+			    						
+			    						var tData=document.createElement("td");
+			    						tData.innerHTML=objCollProcessData[i].sum;
+			    						tableRow.appendChild(tData);			    						
+			    					}			    					
+			    				}		
+			    			}).error(function(data){																		
+			    				alert('Fail!');											
+			    			});	
+			    		});
+			    	});       
+				//]]>			
+			</script>
+		</div>		
+	</body>
+</html>

@@ -36,14 +36,18 @@
 							<div id="processDivCont">
 								<h3>Results</h3>
 								<table id="procesResultTable">
-									<thead>
-										<tr>
+									<thead id="resultTableHeader">
+										
+										<tr id="resultTableRow">
+										<!-- 
 											<td>Process step</td>
 											<td>Measure</td>
 											<td>Errors</td>
 											<td>Average value</td>
-											<td>Total amount</td>											
+											<td>Total amount</td>
+										--> 											
 										</tr>
+										
 									</thead>
 									<tbody id="tBodyProcess">																				
 									</tbody>
@@ -75,35 +79,84 @@
 			    				data: {'fileLocation':fileLocation},
 			    				dataType: 'json',		
 			    				success: function(data){			    					
-			    					//alert(data);
+			    					//alert(data);			    					
 			    					var objCollProcessData=data;
-			    					var i;
-			    					for(i in objCollProcessData){
-			    						//alert(objCollProcessData[i].average);
-			    						var tBodyProcess=document.getElementById("tBodyProcess");
-			    						var tableRow=document.createElement("tr");
-			    						tBodyProcess.appendChild(tableRow);
+			    					//alert(JSON.stringify(objCollProcessData));
+			    					//JSON.stringify(obj);			    					
+			    					var counter;
+			    					var counter2;
+			    					var maximumMeasures=0;			    					
+			    					var process_steps;			    					
+			    					process_steps=objCollProcessData.process_steps;			    					
+			    					//alert(process_steps);
+			    					//alert(JSON.stringify(process_steps))
+			    					//alert(JSON.stringify(process_steps.measures));			    					
+			    					
+			    					//Get maximum amount of measures from a process step
+			    					for(counter in process_steps){
+			    						var measureContainer = process_steps[counter].measures;
+			    						//alert(measureContainer);
+			    						//alert(JSON.stringify(measureContainer));
+			    						if(maximumMeasures < measureContainer.length){
+			    							maximumMeasures = measureContainer.length;
+			    						}
+			    						//alert(measureContainer.length);			    						
+			    					}
+			    					alert(maximumMeasures);			    					
+			    					
+			    					//Create the header of the table
+			    					var tableHeaderRow=document.getElementById("resultTableRow");
+			    					var tableData=document.createElement("td");
+			    					tableData.innerHTML="Process step";
+			    					tableHeaderRow.appendChild(tableData);
+			    					for(j=0;j<maximumMeasures;j++){
+			    						//alert("In td array!");
+			    						var tableData=document.createElement("td");
+			    						tableData.innerHTML="Average";
+			    						tableHeaderRow.appendChild(tableData);
+			    						var tableData=document.createElement("td");
+			    						tableData.innerHTML="Errors";
+			    						tableHeaderRow.appendChild(tableData);			    						
+			    					}
+			    					//Append the table body columns
+			    					var i,k;
+			    					var tableBody=document.getElementById("tBodyProcess");
+			    					var tempMeasures;
+			    					for(i in process_steps){			    						
+			    						//alert("In body section!");			    						
+			    						var tBodyRow=document.createElement("tr");
+			    						tableBody.appendChild(tBodyRow);
 			    						
-			    						var tData=document.createElement("td");
-			    						tData.innerHTML=objCollProcessData[i].processCont[0].processStep;			    						
-			    						tableRow.appendChild(tData);			    						
+			    						var tableData2 = document.createElement("td");
+			    						tableData2.innerHTML=process_steps[i].processStep;
+			    						//tableData.innerHTML="Test";
+			    						tBodyRow.appendChild(tableData2);
+			    						var measureCont = process_steps[i].measures;
+			    						tempMeasures=measureCont.length;
 			    						
-			    						var tData=document.createElement("td");
-			    						tData.innerHTML=objCollProcessData[i].processCont[0].meausure;
-			    						tableRow.appendChild(tData);			    						
-			    						
-			    						var tData=document.createElement("td");
-			    						tData.innerHTML=objCollProcessData[i].errors;
-			    						tableRow.appendChild(tData);
-			    						
-			    						var tData=document.createElement("td");
-			    						tData.innerHTML=objCollProcessData[i].average;
-			    						tableRow.appendChild(tData);
-			    						
-			    						var tData=document.createElement("td");
-			    						tData.innerHTML=objCollProcessData[i].sum;
-			    						tableRow.appendChild(tData);			    						
-			    					}			    					
+			    						for(k=0;k<maximumMeasures;k++){
+			    							//alert("Append data");
+			    							//alert(measureCont[k].average);
+			    							//alert("Counter is: " + k);
+			    							var tableData2 = document.createElement("td");			    							
+											if(k>=tempMeasures){
+												tableData2.innerHTML="";
+			    							}
+			    							else{
+			    								tableData2.innerHTML=measureCont[k].average;
+			    							}											
+											tBodyRow.appendChild(tableData2);
+											
+											var tableData2 = document.createElement("td");			    							
+											if(k>=tempMeasures){
+												tableData2.innerHTML="";
+			    							}
+			    							else{
+			    								tableData2.innerHTML=measureCont[k].errors;
+			    							}
+			    							tBodyRow.appendChild(tableData2);
+			    						}
+			    					}
 			    				}		
 			    			}).error(function(data){																		
 			    				alert('Fail!');											
